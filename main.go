@@ -12,13 +12,16 @@ import (
 	"github.com/drone/drone-go/plugin"
 )
 
-const ROLLBAR_URL = "https://api.rollbar.com/api/1/deploy/"
+// RollbarURL is the HTTP endpoint to hit to notifiy replies
+const RollbarURL = "https://api.rollbar.com/api/1/deploy/"
 
+// DroneConfig is the incoming config parsed out of vargs
 type DroneConfig struct {
 	AccessToken string `json:"rollbar_access_token"`
 	Environment string `json:"rollbar_environment"`
 }
 
+// RollbarArgs is the outgoing request as the post body to rollbar
 type RollbarArgs struct {
 	Comment       string `json:"comment"`
 	AccessToken   string `json:"access_token"`
@@ -54,7 +57,7 @@ func main() {
 	body, err := json.Marshal(payload)
 	exitIfErr(err)
 
-	req, err := http.NewRequest("POST", ROLLBAR_URL, bytes.NewBuffer(body))
+	req, err := http.NewRequest("POST", RollbarURL, bytes.NewBuffer(body))
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{
