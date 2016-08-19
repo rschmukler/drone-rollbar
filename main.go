@@ -15,8 +15,8 @@ import (
 const ROLLBAR_URL = "https://api.rollbar.com/api/1/deploy/"
 
 type DroneConfig struct {
-	AccessToken string `json:"access_token"`
-	Environment string `json:"environment"`
+	AccessToken string `json:"rollbar_access_token"`
+	Environment string `json:"rollbar_environment"`
 }
 
 type RollbarArgs struct {
