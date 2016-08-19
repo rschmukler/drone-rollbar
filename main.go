@@ -32,15 +32,11 @@ type RollbarArgs struct {
 
 func main() {
 	var (
-		repo  = new(drone.Repo)
 		build = new(drone.Build)
-		sys   = new(drone.System)
 		cfg   = new(DroneConfig)
 	)
 
 	plugin.Param("build", build)
-	plugin.Param("repo", repo)
-	plugin.Param("system", sys)
 	plugin.Param("vargs", cfg)
 
 	err := plugin.Parse()
